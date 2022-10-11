@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teammate_id: 1
+  project_id: 1
+
+two:
+  teammate_id: 1
+  project_id: 1
