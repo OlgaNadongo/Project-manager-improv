@@ -31,6 +31,8 @@ class TeammatesController < ApplicationController
 
       end
 
+      
+
       #PATCH /teammates/:id
 
       def update
@@ -58,9 +60,13 @@ class TeammatesController < ApplicationController
         end
       end
 
+
+      
+    
       private
 
       def teammate_params
-        params.permit(:name, :email)
+        
+        params.permit(:id, :name, :email)
       end
 end
