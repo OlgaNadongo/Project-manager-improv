@@ -149,13 +149,9 @@ button:hover span{
   height:80%;
   padding: 40px;
   position: relative;
-  /* margin-top: 10px; */
-  /* position: absolute; */
-  /* top: 50%; */
   transform:translateY(3%) ;
   overflow-y: scroll;
-  /* text-align: center;
-  justify-content:center ; */
+ 
   
 } 
 

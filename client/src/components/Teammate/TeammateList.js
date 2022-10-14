@@ -3,19 +3,23 @@ import { useState,useEffect } from 'react'
 import TeammateItem from './TeammateItem'
 import NewTeammateForm from './NewTeammateForm'
 
-const TeammateList = () => {
-      const[teammates,setTeammates]=useState([])
+const TeammateList = ({team,id}) => {
+  
+      const[teammates,setTeammates]=useState(team)
+      const[showForm,setShowForm]=useState(false)
 
-      useEffect(() => {
+      console.log(teammates)
+
+      // useEffect(() => {
        
-        fetch("http://localhost:4000/teammates")
-          .then((r) => r.json())
-          .then((data) => {
-            console.log(data)
-            setTeammates(data )
-          } 
-        );
-      }, []);
+      //   fetch("/teammates")
+      //     .then((r) => r.json())
+      //     .then((data) => {
+      //       console.log(data)
+      //       setTeammates(data )
+      //     } 
+      //   );
+      // }, []);
 
       function addATeammate(newTeammate){
         setTeammates([...teammates,newTeammate])
@@ -29,15 +33,20 @@ const TeammateList = () => {
   return (
     <div>
         
+        
         <div>
             {
                teammates.map((teammate, index)=>
-                  <p key={index}><TeammateItem   key={index} id={teammate.id} name={teammate.name} email={teammate.email}deleteATeammate={deleteATeammate}/></p>
+                  <p key={index}><TeammateItem   key={index} id={teammate.id} name={teammate.name} email={teammate.email} deleteATeammate={deleteATeammate}/></p>
                )
             }
         </div>
+        <button className='showhideteam' onClick={()=>setShowForm(!showForm)} ><span></span>Person</button>
+
+                {
+                  showForm?<p>{<NewTeammateForm id={id} addATeammate={addATeammate} />}</p>:null
+                }
         
-        <NewTeammateForm addATeammate={addATeammate} />
     </div>
   )
 }

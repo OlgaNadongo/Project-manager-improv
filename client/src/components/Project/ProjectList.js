@@ -12,7 +12,7 @@ const ProjectList = () => {
 
     useEffect(() => {
        
-        fetch("http://localhost:4000/projects")
+        fetch("/projects")
           .then((r) => r.json())
           .then((data) => {
             console.log(data)
@@ -47,7 +47,7 @@ const ProjectList = () => {
                       {
                             projects?.map((project,index)=>
                             <li className='projectlist' key={index}>
-                                <ProjectItem  key={index} id={project.id} title={project.title} deleteAProject={deleteAProject}/>
+                                <ProjectItem  key={index} id={project.id} title={project.title} teammates={project.teammates} deleteAProject={deleteAProject}/>
                             </li>
                             )
                       }

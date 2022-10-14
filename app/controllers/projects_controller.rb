@@ -11,7 +11,8 @@ class ProjectsController < ApplicationController
         project=Project.find_by(id: params[:id])
         
         if project
-            render json: project.to_json(include:[:teammates]), status: :ok
+            # render json: project.to_json(include:[:teammates]), status: :ok
+            render json: project, serializer:TeammembersSerializer, status: :ok
         else
             render json: {error:"Project not found"}, status: :not_found
         end
@@ -20,13 +21,14 @@ class ProjectsController < ApplicationController
     #POST /projects
 
     def create 
+      
         project=Project.create(project_params)
-
-        if project.valid?
-            render json: project, status: :created
-        else
-            render json: {errors: project.errors.full_messages}, status: :unprocessable_entity
-        end
+           render json: project, status: :created
+        # if project.valid?
+        #     render json: project, status: :created
+        # else
+        #     render json: {errors: project.errors.full_messages}, status: :unprocessable_entity
+        # end
     end
 
     #PATCH /projects/:id
@@ -57,6 +59,6 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.permit(:id, :title)
+        params.permit(:title, :user_id)
     end
 end

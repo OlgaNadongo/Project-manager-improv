@@ -13,7 +13,7 @@ const NewProjectForm = ({addAProject}) => {
       function handleFormSubmit(event){
         
         event.preventDefault();
-        fetch('http://localhost:4000/projects',{
+        fetch('/projects',{
           method:'POST',
           headers:{
             'Content-Type':'Application/json',

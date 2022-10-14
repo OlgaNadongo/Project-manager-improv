@@ -6,6 +6,16 @@ class TeammatesController < ApplicationController
         render json: teammates, status: :ok
     end
 
+    # def index
+    #     if params[:project_id]
+    #       project= Project.find(params[:project_id])
+    #       teammates = project.teammates
+    #     else
+    #         teammates = Teammate.all
+    #     end
+    #     render json: teammates, include: :project
+    #   end
+
      #GET /teammates/:id
 
      def show

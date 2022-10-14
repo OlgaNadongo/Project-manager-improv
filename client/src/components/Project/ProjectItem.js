@@ -1,14 +1,14 @@
 import React,{useState} from 'react'
 import TeammateList from '../Teammate/TeammateList'
 
-const ProjectItem = ({id,title,deleteAProject}) => {
+const ProjectItem = ({id,title,deleteAProject,teammates}) => {
 
   const[showteam,setShowteam]=useState(false)
-
+     console.log(teammates)
   //add delete function
   function handleDelete(id){
     // console.log("deleted")
-      fetch(`http://localhost:4000/projects/${id}`,{
+      fetch(`/projects/${id}`,{
         method:'DELETE'
       })
       .then(response=>response.json())
@@ -33,11 +33,12 @@ const ProjectItem = ({id,title,deleteAProject}) => {
 
             <div  className='buttonholder'> */}
               <button className='showhideteam' onClick={()=>setShowteam(!showteam)} ><span></span>{showteam? "Hide":"Team"}</button>
+              
             </div>
             </div>
             <div>
                 {
-                  showteam?<h4>{<TeammateList/>}</h4>:null
+                  showteam?<h4>{<TeammateList id={id} team={teammates}/>}</h4>:null
                 }
             
         </div>

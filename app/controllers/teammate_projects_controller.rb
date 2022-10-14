@@ -1,4 +1,5 @@
 class TeammateProjectsController < ApplicationController
+     
 
     #GET /teammates
     def index
@@ -21,12 +22,13 @@ class TeammateProjectsController < ApplicationController
 
     def create 
         teammate_project=TeammateProject.create(project_params)
+           render json: teammate_project, status: :created
 
-        if teammate_project.valid?
-            render json: teammate_project, status: :created
-        else
-            render json: {errors: teammate_project.errors.full_messages}, status: :unprocessable_entity
-        end
+        # if teammate_project.valid?
+        #     render json: teammate_project, status: :created
+        # else
+        #     render json: {errors: teammate_project.errors.full_messages}, status: :unprocessable_entity
+        # end
     end
 
     #PATCH /teammates/:id

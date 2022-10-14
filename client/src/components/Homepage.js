@@ -29,7 +29,7 @@ const Homepage = () => {
                 <h2 className="logo">SWEEZY</h2>
 
                 <ul>
-                    <NavLink className='links' to="/projectlist">Projects</NavLink>
+                    {/* <NavLink className='links' to="/projectlist">Projects</NavLink> */}
                     <NavLink className='links' to="/login">Log in</NavLink>
                     <NavLink className='links' to="/signup">Get started</NavLink>
                 </ul>

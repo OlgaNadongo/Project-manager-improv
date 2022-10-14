@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-const NewTeammateForm = ({addATeammate}) => {
+const NewTeammateForm = ({addATeammate,id}) => {
 
   const [teammateFormData, setTeammateFormData]=useState({name:"", email:""})
 
@@ -14,7 +14,7 @@ const NewTeammateForm = ({addATeammate}) => {
     // console.log(teammateFormData)
     event.preventDefault('')
 
-    fetch('http://localhost:4000/teammates',{
+    fetch(`/teammates`,{
       method:'POST',
       headers:{
         'Content-Type':'Application/json',
@@ -24,13 +24,35 @@ const NewTeammateForm = ({addATeammate}) => {
     })
     .then(response=>response.json())
     .then(data=>{
-         console.log('Succes:',data)  
-        setTeammateFormData({name:"",email:""})
+         console.log('Success:',data)  
+        //  setTeammateFormData({name:"",email:""})
         addATeammate(data);
-    })
+          console.log(JSON.stringify({project_id: id,teammate_id: data.id}))
+        fetch(`/project_teammates`,{
+          method:'POST',
+          headers:{
+            'Content-Type':'Application/json',
+            'Accept':'Application/json'
+          },
+          body:JSON.stringify({project_id: id,teammate_id: data.id})
+
+        })
+        .then(response=>response.json())
+        .then(data=>{
+             console.log('Success:',data)  
+          
+        })
+        .catch(error=>console.log(error))
+    
+      }
+    
+    )
+   
     .catch(error=>console.log(error))
 
   }
+
+
 
   return (
     <div>
